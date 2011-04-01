@@ -14,7 +14,7 @@
 (function() {
 
     function ShortDateFormatError(msg) {
-        return "Argument `format` is malformed: " + msg;
+        return "Argument 'format' is malformed: " + msg;
     }
     
     (function() {
