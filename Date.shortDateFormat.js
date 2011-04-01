@@ -38,7 +38,7 @@
                 format = format.replace("m", month);
             }
             else {
-                throw ShortDateFormatError("missing `m` or `mm` for month");
+                throw ShortDateFormatError("missing 'm' or 'mm' for month");
             }
 
             var day = this.getDate();
@@ -50,7 +50,7 @@
                 format = format.replace("d", day);
             }
             else {
-                throw ShortDateFormatError("missing `d` or `dd` for day");
+                throw ShortDateFormatError("missing 'd' or 'dd' for day");
             }
 
             if (contains(format, "yyyy")) {
@@ -60,7 +60,7 @@
                 format = format.replace("yy", (this.getFullYear() + "").substring(2));
             }
             else {
-                throw ShortDateFormatError("missing `yy` or `yyyy` for year");
+                throw ShortDateFormatError("missing 'yy' or 'yyyy' for year");
             }
 
             return format;
