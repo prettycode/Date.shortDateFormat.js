@@ -70,8 +70,10 @@
     
     // Convert localized short date string to Date object
 
-    Date.parseShortDateFormat = function (format, date) {
+    Date.parseShortDateFormat = function (date, format) {
 
+        format = format || Date.shortDateFormat;
+    
         var separator = date.replace(/\d/g, "").charAt(0),
             formatSplit = format.split(separator),
             dateSplit = date.split(separator);
