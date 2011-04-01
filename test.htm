@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="Date.shortDateFormat.js" type="text/javascript"></script>
+</head>
+<body>
+    Make sure the browser JavaScript debugger is enabled and the JavaScript console is showing.
+</body>
+
+<script type="text/javascript">
+
+    function TestFailure(msg) {
+        return "Test failed" + (msg ? (": " + msg) : "");
+    }
+
+    var date = new Date(1984, 4, 7);
+
+    // Date.toLocaleShortDate tests
+
+    (function() {
+
+        if (date.toShortDateFormat("m/d/yy") !== "5/7/84") {
+            throw TestFailure();
+        }
+
+        if (date.toShortDateFormat("mm/d/yy") !== "05/7/84") {
+            throw TestFailure();
+        }
+
+        if (date.toShortDateFormat("m/dd/yy") !== "5/07/84") {
+            throw TestFailure();
+        }
+
+        if (date.toShortDateFormat("m/d/yyyy") !== "5/7/1984") {
+            throw TestFailure();
+        }
+
+        if (date.toShortDateFormat("yyyy-mm-dd") !== "1984-05-07") {
+            throw TestFailure();
+        }
+
+        if (date.toShortDateFormat("ddyyyymm") !== "07198405") {
+            throw TestFailure();
+        }
+
+        if (date.toShortDateFormat("d") !== "7") {
+            throw TestFailure();
+        }
+        
+        if (date.toShortDateFormat("m") !== "5") {
+            throw TestFailure();
+        }
+        
+        if (date.toShortDateFormat("yy") !== "84") {
+            throw TestFailure();
+        }
+
+    })();
+
+    (function() {
+        
+        if (Date.parseShortDateFormat("5/7/84", "m/d/yy").toString() !== date.toString()) {
+            throw TestFailure();
+        }
+
+        if (Date.parseShortDateFormat("05/7/84", "mm/d/yy").toString() !== date.toString()) {
+            throw TestFailure();
+        }
+
+        if (Date.parseShortDateFormat("5/07/84", "m/dd/yy").toString() !== date.toString()) {
+            throw TestFailure();
+        }
+
+        if (Date.parseShortDateFormat("5/7/1984", "m/d/yyyy").toString() !== date.toString()) {
+            throw TestFailure();
+        }
+
+        if (Date.parseShortDateFormat("1984-05-07", "yyyy-mm-dd").toString() !== date.toString()) {
+            throw TestFailure();
+        }
+
+        if (Date.parseShortDateFormat("05/07/1984", "m/d/yyyy").toString() !== date.toString()) {
+            throw TestFailure();
+        }
+        
+        if (Date.parseShortDateFormat("07198405", "ddyyyymm").toString() !== date.toString()) {
+            throw TestFailure();
+        }
+
+        if (Date.parseShortDateFormat("13/07/1983", "m/d/yyyy") !== null) {
+            throw TestFailure("parseShortDateFormat should return null from out-of-range month");
+        }
+        
+        if (Date.parseShortDateFormat("12/33/1983", "m/d/yyyy") !== null) {
+            throw TestFailure("parseShortDateFormat should return null from out-of-range day");
+        }
+
+        if (Date.parseShortDateFormat("13/07/pizza", "m/d/yyyy") !== null) {
+            throw TestFailure("parseShortDateFormat should return null from non-numeric year");
+        }
+        
+        (function() {
+            
+            var error = false;
+            
+            try
+            {
+                Date.parseShortDateFormat("1984-05-07", "xxxx-mm-dd");
+            }
+            catch(ex) {
+                error = ex;
+            }
+            
+            if (!error) {
+                throw TestFailure();
+            }
+            
+        })();
+        
+    })();
+
+    console.log("All tests pass.");
+
+</script>
+
+</html>

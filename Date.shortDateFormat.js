@@ -13,18 +13,14 @@
 
 (function() {
 
-    function ShortDateFormatError(msg) {
-        return "Argument 'format' is malformed: " + msg;
-    }
-    
+    // Convert Date object to formatted short date string
+
     (function() {
 
         function contains(s, search) {
             return s.indexOf(search) !== -1;
         };
-        
-        // Convert Date object to formatted short date string
-
+    
         Date.prototype.toShortDateFormat = function(format) {
         
             format = format || Date.shortDateFormat;
@@ -37,10 +33,7 @@
             else if (contains(format, "m")) {
                 format = format.replace("m", month);
             }
-            else {
-                throw ShortDateFormatError("missing 'm' or 'mm' for month");
-            }
-
+    
             var day = this.getDate();
 
             if (contains(format, "dd")) {
@@ -49,20 +42,14 @@
             else if (contains(format, "d")) {
                 format = format.replace("d", day);
             }
-            else {
-                throw ShortDateFormatError("missing 'd' or 'dd' for day");
-            }
-
+    
             if (contains(format, "yyyy")) {
                 format = format.replace("yyyy", this.getFullYear());
             }
             else if (contains(format, "yy")) {
                 format = format.replace("yy", (this.getFullYear() + "").substring(2));
             }
-            else {
-                throw ShortDateFormatError("missing 'yy' or 'yyyy' for year");
-            }
-
+    
             return format;
         };
     
@@ -94,7 +81,7 @@
                 year = dateSplit[i];
             }
             else {
-                throw ShortDateFormatError("expected 'd', 'm', or 'y', but got '" + datePart + "'");
+                throw "Argument 'format' is malformed: expected 'd', 'm', or 'y', but got '" + datePart + "'";
             }
         }
         
@@ -116,7 +103,7 @@
             return null;
         }
 
-        return new Date(month + "/" + day + "/" + year);
+        return new Date(year, month - 1, day);
         
     };
 
