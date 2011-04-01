@@ -60,7 +60,7 @@
                 format = format.replace("yy", (this.getFullYear() + "").substring(2));
             }
             else {
-                throw ShortDateFormatError("missing `yyyy` or `yy` for year");
+                throw ShortDateFormatError("missing `yy` or `yyyy` for year");
             }
 
             return format;
