@@ -96,18 +96,18 @@
             }
         }
         
-        month = parseInt(month, 10);
-
-        if (isNaN(month) || month > 12 || month < 1) {
-            return null;
-        }
-
         day = parseInt(day, 10);
 
         if (isNaN(day) || day > 31 || day < 1) {
             return null;
         }
 
+        month = parseInt(month, 10);
+
+        if (isNaN(month) || month > 12 || month < 1) {
+            return null;
+        }
+        
         year = parseInt(year, 10);
 
         if (isNaN(year)) {
