@@ -17,7 +17,7 @@ And a function for parsing strings that represent dates in a specific, date-only
     };
     
  
-`format` Argument
+'format' Argument
 --------------------------------    
     
 In both functions, the `format` argument specifies a string format to convert the date to, or the format to parse from.
@@ -31,7 +31,7 @@ Therefore, if you wish to set a global short date format, set `Date.shortDateFor
 `shortDateFormat` in the absense of a `format` argument.
 
 
-`Date.prototype.toShortDateFormat`
+Date.prototype.toShortDateFormat
 ----------------------------------
 
 To use `toShortDateFormat()`, call it on a `Date` object:
@@ -67,8 +67,8 @@ or `m` and `yy` or `yyyy`. For example:
     console.log(todayFormatted + " === ''");
     
     
-`Date.parseShortDateFormat`
----------------------------
+Date.parseShortDateFormat
+-------------------------
 
 While `toShortDateFormat()` is liberal with its formatting, allowing non-date characters and missing date portions, 
 `Date.parseShortDateFormat` is more strict: the `format` argument *must* contain `dd` or `d`, `mm` or `m`, and `yy` or
