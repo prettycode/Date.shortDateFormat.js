@@ -38,18 +38,18 @@ To use `toShortDateFormat()`, call it on a `Date` object:
 
     var todayFormatted = new Date().toShortDateFormat("m/d/yyyy");
     
-`toShortDateFormat()` looks for `dd` or `d`, `mm` or `m`, and `yy` or `yyyy` characters in the `format` argument and
+`toShortDateFormat()` looks for `dd` or `d`, `mm` or `m`, and `yyyy` or `yy` characters in the `format` argument and
 replaces them with the corresponding day, month, and year.
 
 In the `todayFormatted` example above, if the current date is April 5th, 2011, the `todayFormatted` will be equal to
-"4/5/2011".
+`4/5/2011`.
 
-To include leading zeros in months or days that are less than 10, use 'dd and 'mm':
+To include leading zeros in months or days that are less than 10, use `dd` and `mm`:
 
     var todayFormatted = new Date().toShortDateFormat("mm/dd/yyyy");
     console.log(todayFormatted + " === '04/05/2011'");
     
-Use 'yy' for the last-two digits of the year, or `yyyy` for the full four-digit year:
+Use `yy` for the last-two digits of the year, or `yyyy` for the full four-digit year:
 
     var todayFormatted = new Date().toShortDateFormat("mm-dd-yy");
     console.log(todayFormatted + " === '04-05-11'");
@@ -71,8 +71,8 @@ Date.parseShortDateFormat
 -------------------------
 
 While `toShortDateFormat()` is liberal with its formatting, allowing non-date characters and missing date portions, 
-`Date.parseShortDateFormat` is more strict: the `format` argument *must* contain `dd` or `d`, `mm` or `m`, and `yy` or
-`yyyy`, *and a consistent separator character*, with no superfluous characters.
+`Date.parseShortDateFormat` is more strict: the `format` argument *must* contain `dd` or `d`, `mm` or `m`, and `yyyy` or
+`yy`, *and a consistent separator character*, with no superfluous characters.
 
 For example, this is a valid `format` argument:
 
@@ -92,7 +92,7 @@ the `yyy`.)
 
     var myDate = Date.parseShortDateFormat("2011.04.05", "yyy.mm.dd");
 
-If a parsed day or month is out of range (the day is 32 or month is 13), `parseShortDateFormat` will return null:
+If a parsed day or month is out of range (the day is 32 or month is 13), `parseShortDateFormat()` will return null:
 
     console.log(Date.parseShortDateFormat("32.05.11", "dd.mm.yy") + " === null");
     
