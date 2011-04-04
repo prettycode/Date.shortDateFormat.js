@@ -42,6 +42,10 @@
         if (date.toShortDateFormat("ddyyyymm") !== "07198405") {
             throw TestFailure();
         }
+        
+        if (date.toShortDateFormat("pizza ddyyyymm") !== "pizza 07198405") {
+            throw TestFailure();
+        }
 
         if (date.toShortDateFormat("d") !== "7") {
             throw TestFailure();
@@ -79,7 +83,11 @@
             throw TestFailure();
         }
 
-        if (Date.parseShortDateFormat("05/07/1984", "m/d/yyyy").toString() !== date.toString()) {
+        if (Date.parseShortDateFormat("05/07/84", "m/d/yy").toString() !== date.toString()) {
+            throw TestFailure();
+        }
+        
+        if (Date.parseShortDateFormat("1/1/11", "mm/dd/yyyy").toString() !== new Date("01/01/1911").toString()) {
             throw TestFailure();
         }
         
