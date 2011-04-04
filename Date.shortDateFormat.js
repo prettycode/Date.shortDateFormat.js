@@ -42,12 +42,14 @@
             else if (contains(format, "d")) {
                 format = format.replace("d", day);
             }
+            
+            var year = this.getFullYear();
     
             if (contains(format, "yyyy")) {
-                format = format.replace("yyyy", this.getFullYear());
+                format = format.replace("yyyy", year);
             }
             else if (contains(format, "yy")) {
-                format = format.replace("yy", (this.getFullYear() + "").substring(2));
+                format = format.replace("yy", (year + "").substring(2));
             }
     
             return format;

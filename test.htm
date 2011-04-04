@@ -83,10 +83,6 @@
             throw TestFailure();
         }
         
-        if (Date.parseShortDateFormat("07198405", "ddyyyymm").toString() !== date.toString()) {
-            throw TestFailure();
-        }
-
         if (Date.parseShortDateFormat("13/07/1983", "m/d/yyyy") !== null) {
             throw TestFailure("parseShortDateFormat should return null from out-of-range month");
         }
