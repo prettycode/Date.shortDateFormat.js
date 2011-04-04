@@ -105,7 +105,7 @@
             return null;
         }
 
-        return new Date(year, month - 1, day);
+        return new Date(month + "/" + day + "/" + year);
         
     };
 
