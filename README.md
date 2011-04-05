@@ -4,7 +4,7 @@ Date.shortDateFormat
 This script is designed to aid in localizing and parsing localized dates, though it can easily be used for other 
 formatting needs unrelated specifically to localization.
 
-It creates a `Date.prototype.toShortDateFormat` for converting `Date` objects to date-only strings according to
+It creates a `Date.prototype.toShortDateFormat` function for converting `Date` objects to date-only strings according to
 a specified format, like so:
 
     var dateOnlyString = new Date().toShortDateFormat("yyyy-mm-dd");
@@ -14,7 +14,7 @@ The script also includes a function off of `Date` for parsing strings that repre
     var dateObject = Date.parseShortDateFormat(dateOnlyString, "yyyy-mm-dd");
     
  
-'format' Argument
+Optional 'format' Argument
 --------------------------------    
     
 In both functions, the `format` argument specifies a string format to convert the date to, or the format to parse from.
