@@ -64,23 +64,25 @@ Date.parseShortDateFormat
 
 While `toShortDateFormat()` is liberal with its formatting, allowing non-date characters and missing date portions, 
 `Date.parseShortDateFormat` is more strict: the `format` argument *must* contain `dd` or `d`, `mm` or `m`, and `yyyy` or
-`yy`, `format` *must* have a consistent separator character, and the string to parse *must not* contain superfluous
-characters (any character except a separator, 'd', 'm', and 'y').
+`yy`, `format` *must* have a consistent separator character (can by any character except `d`, `m`, and `y`), and the
+string to parse *must not* contain superfluous characters (must not contain any characters but a separator, `d`, `m`,
+and `y`).
 
-A separator character is consistent when the same character is used twice. For example, this is not consistent, and will
-result in an error:
-
-    var format = "yyyy/mm--dd";
-    
 If either day, month, or year are not found, an exception will be thrown. In the example below, `yyy` is used when the
 function expects either `yy` or `yyyy`, and an exception results. (The string would be successfully parsed if not for
 the `yyy`.)
 
-    var myDate = Date.parseShortDateFormat("2011.04.05", "yyy.mm.dd");
+    var localizedDateString = Date.parseShortDateFormat("2011.04.05", "yyy.mm.dd");
 
-If a parsed day or month is out of range (the day is 32 or month is 13), `parseShortDateFormat()` will return `null`:
+A separator character is "consistent" when the same character is used twice. For example, this is not consistent, and
+will result in a run-time error:
 
-    console.log(Date.parseShortDateFormat("32.05.11", "dd.mm.yy") + " === null");
+    var format = "yyyy/mm--dd";    
+
+If a parsed day or month is out of range (the day is `32` or month is `13`, for example), `parseShortDateFormat()` will
+return `null`:
+
+    var dateObject = Date.parseShortDateFormat("32.05.11", "dd.mm.yy"); // === null
     
 Lastly, it's important to note that the format is fuzzy for `dd`/`d`, `mm`/`m`, and `yy`/`yyyy`. In other words, if 
 the date being parsed is in `dd` format and the `format` string specifies `d`, the short date will still be successfully
