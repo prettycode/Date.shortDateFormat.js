@@ -34,7 +34,8 @@ Date.prototype.toShortDateFormat
 
 To use `toShortDateFormat()`, call it on a `Date` object:
 
-    var todayFormatted = new Date().toShortDateFormat("m/d/yyyy");
+    var todayDate = new Date(),
+        todayFormatted = today.toShortDateFormat("m/d/yyyy");
     
 `toShortDateFormat()` looks for `dd` or `d`, `mm` or `m`, and `yyyy` or `yy` characters in the `format` argument and
 replaces them with the corresponding day, month, and year.
@@ -42,27 +43,20 @@ replaces them with the corresponding day, month, and year.
 In the `todayFormatted` example above, if the current date is April 5th, 2011, the `todayFormatted` will be equal to
 `4/5/2011`.
 
-To include leading zeros in months or days that are less than 10, use `dd` and `mm`:
+To include leading zeros in months or days that are less than 10, use `dd` and `mm` instead of `d` and `m` in `format`:
 
-    var todayFormatted = new Date().toShortDateFormat("mm/dd/yyyy");
-    console.log(todayFormatted + " === '04/05/2011'");
+    todayFormatted = todayDate.toShortDateFormat("mm/dd/yyyy"); // === "04/05/2011"
     
-Use `yy` for the last-two digits of the year, or `yyyy` for the full four-digit year:
+Use `yy` for the last-two digits of the year, or `yyyy` for the full, four-digit year:
 
-    var todayFormatted = new Date().toShortDateFormat("mm-dd-yy");
-    console.log(todayFormatted + " === '04-05-11'");
+    todayFormatted = todayDate.toShortDateFormat("mm-dd-yy"); // === "04-05-11"
     
 If `toShortDateFormat()` does not find `dd` or `d`, it will not output the day in the result. The same applies to `mm`
 or `m` and `yy` or `yyyy`. For example:
 
-    var todayFormatted = new Date().toShortDateFormat("Pizza party: mm/dd");
-    console.log(todayFormatted + " === 'Pizza party: 04/05'");
-    
-    todayFormatted = new Date().toShortDateFormat("yyyym");
-    console.log(todayFormatted + " === '20114'");
-    
-    todayFormatted = new Date().toShortDateFormat("");
-    console.log(todayFormatted + " === ''");
+    todayFormatted = todayDate.toShortDateFormat("Pizza party: mm/dd"); // === "Pizza party: 04/05"
+    todayFormatted = todayDate.toShortDateFormat("yyyym");              // === "20114"
+    todayFormatted = todayDate.toShortDateFormat("");                   // === ""
     
     
 Date.parseShortDateFormat
