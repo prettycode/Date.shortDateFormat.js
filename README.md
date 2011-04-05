@@ -70,16 +70,10 @@ Date.parseShortDateFormat
 
 While `toShortDateFormat()` is liberal with its formatting, allowing non-date characters and missing date portions, 
 `Date.parseShortDateFormat` is more strict: the `format` argument *must* contain `dd` or `d`, `mm` or `m`, and `yyyy` or
-`yy`, *and a consistent separator character*, with no superfluous characters.
+`yy`, `format` *must* have a consistent separator character, and the string to parse *must not* contain superfluous
+characters (any character except a separator, 'd', 'm', and 'y').
 
-For example, this is a valid `format` argument:
-
-    var myDate = Date.parseShortDateFormat("2011-04-05", "yyyy-mm-dd");
-    
-It's valid because the separator character, `-`, is present and consistent, and `yyyy`, `mm`, and `dd` are included. The
-separator character can be any character, as long as it is the same throughout the `format` string.
-
-A separator character is consistent when the same character is used. For example, this is not consistent, and will
+A separator character is consistent when the same character is used twice. For example, this is not consistent, and will
 result in an error:
 
     var format = "yyyy/mm--dd";
@@ -90,7 +84,7 @@ the `yyy`.)
 
     var myDate = Date.parseShortDateFormat("2011.04.05", "yyy.mm.dd");
 
-If a parsed day or month is out of range (the day is 32 or month is 13), `parseShortDateFormat()` will return null:
+If a parsed day or month is out of range (the day is 32 or month is 13), `parseShortDateFormat()` will return `null`:
 
     console.log(Date.parseShortDateFormat("32.05.11", "dd.mm.yy") + " === null");
     
