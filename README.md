@@ -4,32 +4,30 @@ Date.shortDateFormat
 This script is designed to aid in localizing and parsing localized dates, though it can easily be used for other 
 formatting needs unrelated specifically to localization.
 
-It creates a `Date.prototype` for converting `Date` objects to date-only strings according to specific format:
+It creates a `Date.prototype.toShortDateFormat` for converting `Date` objects to date-only strings according to
+a specified format, like so:
 
-    Date.prototype.toShortDateFormat = function(format) {
-        ...
-    };
+    var dateOnlyString = new Date().toShortDateFormat("yyyy-mm-dd");
     
-And a function for parsing strings that represent dates in a specific, date-only format:
+The script also includes a function off of `Date` for parsing strings that represent dates in specific formats:
 
-    Date.parseShortDateFormat = function(date, format) {
-        ...
-    };
+    var dateObject = Date.parseShortDateFormat(dateOnlyString, "yyyy-mm-dd");
     
  
 'format' Argument
 --------------------------------    
     
 In both functions, the `format` argument specifies a string format to convert the date to, or the format to parse from.
-(See the sections below for the specific syntax of `format`.)
-
-In the absense of a `format` argument, both functions will use the value of `Date.shortDateFormat` for the format
-string.
+In the absense of a `format` argument, both functions will use the value of `Date.shortDateFormat` for the format string.
 
 Therefore, if you wish to set a global short date format, set `Date.shortDateFormat` to the format, omit the
-`format` argument for the functions, and both `toShortDateFormat` and `parseShortDateFormat` will automatically use 
-`shortDateFormat` in the absense of a `format` argument.
+`format` argument for the functions, and both `toShortDateFormat()` and `parseShortDateFormat()` will automatically use 
+`shortDateFormat` in the absense of a `format` argument:
 
+    Date.shortDateFormat = "d/m/yy";
+    
+    var dateOnlyString = new Date().toShortDateFormat(),
+        dateObject = Date.parseShortDateFormat(dateOnlyString);
 
 Date.prototype.toShortDateFormat
 ----------------------------------
