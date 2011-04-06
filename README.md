@@ -35,7 +35,7 @@ Date.prototype.toShortDateFormat
 To use `toShortDateFormat()`, call it on a `Date` object:
 
     var todayDate = new Date(),
-        todayFormatted = today.toShortDateFormat("m/d/yyyy");
+        todayFormattedString = today.toShortDateFormat("m/d/yyyy");
     
 `toShortDateFormat()` looks for `dd` or `d`, `mm` or `m`, and `yyyy` or `yy` characters in the `format` argument and
 replaces them with the corresponding day, month, and year.
@@ -45,18 +45,18 @@ In the `todayFormatted` example above, if the current date is April 5th, 2011, t
 
 To include leading zeros in months or days that are less than 10, use `dd` and `mm` instead of `d` and `m` in `format`:
 
-    todayFormatted = todayDate.toShortDateFormat("mm/dd/yyyy"); // === "04/05/2011"
+    todayDate.toShortDateFormat("mm/dd/yyyy"); // "04/05/2011"
     
 Use `yy` for the last-two digits of the year, or `yyyy` for the full, four-digit year:
 
-    todayFormatted = todayDate.toShortDateFormat("mm-dd-yy"); // === "04-05-11"
+    todayDate.toShortDateFormat("mm-dd-yy"); // "04-05-11"
     
 If `toShortDateFormat()` does not find `dd` or `d`, it will not output the day in the result. The same applies to `mm`
 or `m` and `yy` or `yyyy`. For example:
 
-    todayFormatted = todayDate.toShortDateFormat("Pizza party: mm/dd"); // === "Pizza party: 04/05"
-    todayFormatted = todayDate.toShortDateFormat("yyyym");              // === "20114"
-    todayFormatted = todayDate.toShortDateFormat("");                   // === ""
+    todayDate.toShortDateFormat("Pizza party: mm/dd"); // "Pizza party: 04/05"
+    todayDate.toShortDateFormat("yyyym");              // "20114"
+    todayDate.toShortDateFormat("");                   // ""
     
     
 Date.parseShortDateFormat
@@ -65,14 +65,14 @@ Date.parseShortDateFormat
 While `toShortDateFormat()` is liberal with its formatting, allowing non-date characters and missing date portions, 
 `Date.parseShortDateFormat` is more strict: the `format` argument *must* contain `dd` or `d`, `mm` or `m`, and `yyyy` or
 `yy`, `format` *must* have a consistent separator character (can by any character except `d`, `m`, and `y`), and the
-string to parse *must not* contain superfluous characters (must not contain any characters but a separator, `d`, `m`,
+string to parse *must not* contain superfluous characters (must not contain any characters except: a separator, `d`, `m`,
 and `y`).
 
 If either day, month, or year are not found, an exception will be thrown. In the example below, `yyy` is used when the
 function expects either `yy` or `yyyy`, and an exception results. (The string would be successfully parsed if not for
 the `yyy`.)
 
-    var localizedDateString = Date.parseShortDateFormat("2011.04.05", "yyy.mm.dd");
+    var dateObject = Date.parseShortDateFormat("2011.04.05", "yyy.mm.dd");
 
 A separator character is "consistent" when the same character is used twice. For example, this is not consistent, and
 will result in a run-time error:
@@ -82,11 +82,11 @@ will result in a run-time error:
 If a parsed day or month is out of range (the day is `32` or month is `13`, for example), `parseShortDateFormat()` will
 return `null`:
 
-    var dateObject = Date.parseShortDateFormat("32.05.11", "dd.mm.yy"); // === null
+    Date.parseShortDateFormat("32.05.11", "dd.mm.yy"); // null
     
 Lastly, it's important to note that the format is fuzzy for `dd`/`d`, `mm`/`m`, and `yy`/`yyyy`. In other words, if 
 the date being parsed is in `dd` format and the `format` string specifies `d`, the short date will still be successfully
 parsed. For example, these successfully parse: 
 
     var aprilFools = Date.parseShortDateFormat("11-4-1", "yyyy/dd/mm"),
-        newYears = Date.parseShortDateFormat("2011/1/1", "yy/mm/dd");
+        newYears   = Date.parseShortDateFormat("2011/1/1", "yy/mm/dd");
